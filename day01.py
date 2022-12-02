@@ -56,10 +56,13 @@ if __name__ == '__main__':
         data = f.read()
         for fn in (day1_a, day1_a_one_line, day1_b):
             times = []
+            answers = []
             for _ in range(5):
                 start = timer()
-                fn(data)
+                ans = fn(data)
                 end = timer()
                 times.append(end - start)
-
-            print(f"Average time for {fn.__name__}:", sum(times) / len(times))
+                answers.append(ans)
+            assert all(x == answers[0] for x in answers)
+            print("Answer:", answers[0])
+            print(f"Average time for {fn.__name__}:", (sum(times) / len(times)) * 1e6, "µs")
