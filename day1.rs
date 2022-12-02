@@ -41,8 +41,9 @@ fn main() {
     for _ in 0..5 {
         let start = Instant::now();
         let max_cal_a: i32 = day1_a(&contents);
-        println!("Maximum calories (part a): {}", max_cal_a);
         let duration = start.elapsed();
+        println!("Maximum calories (part a): {}", max_cal_a);
+
         println!("Time elapsed in day1_a() is: {:?}", duration);
     }
 
