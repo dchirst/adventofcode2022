@@ -1,5 +1,3 @@
-from os import environ
-
 from aocd import get_data
 from dotenv import load_dotenv
 
@@ -63,7 +61,6 @@ def day02_b(data):
 
 
 if __name__ == '__main__':
-    session = environ.get("AOCSESSION")
     data = get_data(session, day=2, year=2022)
     print(day02_a(data))
     print(day02_b(data))

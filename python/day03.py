@@ -1,5 +1,3 @@
-from os import environ
-
 from aocd import get_data
 from dotenv import load_dotenv
 
@@ -28,11 +26,11 @@ def day03_a(all_contents: str) -> int:
 
 def day03_b(all_contents: str) -> int:
     rucksack_contents = all_contents.split("\n")
-    return sum(map(lambda x: priority(find_common_item_three(rucksack_contents[x:x+3])), range(0, len(rucksack_contents), 3)))
+    return sum(map(lambda x: priority(find_common_item_three(rucksack_contents[x:x + 3])),
+                   range(0, len(rucksack_contents), 3)))
 
 
 if __name__ == '__main__':
-    session = environ.get("AOCSESSION")
     data = get_data(session, day=3, year=2022)
     print(day03_a(data))
     print(day03_b(data))

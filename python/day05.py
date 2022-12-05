@@ -33,11 +33,11 @@ def day05_a(data: str) -> str:
     return "".join(s[0] for s in stack.values())
 
 
-def day05_b(data: str)  -> str:
+def day05_b(data: str) -> str:
     stack, procedure = parse_data(data)
     for num, from_idx, to_idx in procedure:
-            stack[to_idx] = stack[from_idx][:int(num)] + stack[to_idx]
-            stack[from_idx] = stack[from_idx][int(num):]
+        stack[to_idx] = stack[from_idx][:int(num)] + stack[to_idx]
+        stack[from_idx] = stack[from_idx][int(num):]
 
     return "".join(s[0] for s in stack.values())
 

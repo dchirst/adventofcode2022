@@ -52,7 +52,7 @@ def day1_b(data: str) -> int:
 
 
 if __name__ == '__main__':
-    with open("inputs/day1.txt", "r") as f:
+    with open("../inputs/day1.txt", "r") as f:
         data = f.read()
         for fn in (day1_a, day1_a_one_line, day1_b):
             times = []
