@@ -1,5 +1,20 @@
 use std::fs;
 use std::time::{Instant};
+use itertools::Itertools;
+
+
+
+fn day1_a_copied(data: &str) -> u64 {
+    let totals: Vec<u64> = include_str!("../inputs/day1.txt")
+        .split("\n\n")
+        .map(|elf| {
+            elf.split("\n")
+                .map(|food| food.parse::<u64>().unwrap_or(0)).sum()
+    })
+        .sorted().rev().collect();
+
+    return totals[0]
+}
 
 
 fn day1_a(data: &str) -> i32 {
@@ -36,6 +51,8 @@ fn day1_b(data: &str) -> i32 {
 }
 
 fn main() {
+
+    extern crate itertools;
     let contents = fs::read_to_string("inputs/day1.txt")
         .expect("Should have been able to read the file");
     for _ in 0..5 {
@@ -45,6 +62,15 @@ fn main() {
         println!("Maximum calories (part a): {}", max_cal_a);
 
         println!("Time elapsed in day1_a() is: {:?}", duration);
+    }
+
+    for _ in 0..5 {
+        let start = Instant::now();
+        let max_cal_a: i32 = day1_a(&contents);
+        let duration = start.elapsed();
+        println!("Maximum calories (part a copied solution): {}", max_cal_a);
+
+        println!("Time elapsed in day1_a_copied() is: {:?}", duration);
     }
 
     let max_cal_b: i32 = day1_b(&contents);
