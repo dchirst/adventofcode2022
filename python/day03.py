@@ -11,7 +11,6 @@ def find_common_item_one(contents: str) -> str:
 
 
 def find_common_item_three(contents: list[str]) -> str:
-    print(contents)
     return next(iter(set(contents[0]).intersection(set(contents[1]), set(contents[2]))))
 
 
@@ -31,6 +30,6 @@ def day03_b(all_contents: str) -> int:
 
 
 if __name__ == '__main__':
-    data = get_data(session, day=3, year=2022)
+    data = get_data(day=3, year=2022)
     print(day03_a(data))
     print(day03_b(data))
