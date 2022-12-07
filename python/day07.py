@@ -7,26 +7,33 @@ load_dotenv()
 
 
 def get_dir_sizes(instructions):
+    # initialise iterator of instructions
     inst = next(instructions)
     dir_sizes = []
 
     total_size = 0
 
+    # Get file sizes inside directory
     if inst.startswith("$ ls"):
         while inst := next(instructions, None):
-            if inst.startswith("dir"):
-                continue
-            elif inst.split()[0].isnumeric():
+            # count all file sizes towards total size
+            if inst.split()[0].isnumeric():
                 total_size += int(inst.split()[0])
+            elif inst.startswith("dir"):
+                continue
+            # if next instruction is a new command (denoted by $), then the ls command is over so break the loop
             elif inst.startswith("$"):
                 break
             else:
                 raise Exception(f"Unknown line {inst}")
 
+    # iterate through all folders in current directory
     while True:
+        # if stepping out, you're finished with the directory
         if not inst or inst.startswith("$ cd .."):
             dir_sizes.append(total_size)
             return total_size, dir_sizes, instructions
+        # if stepping in, use recursion to find size of subdirectory
         elif inst.startswith("$ cd"):
             sub_dir_size, sub_dir_sizes, instructions = get_dir_sizes(instructions)
             dir_sizes += sub_dir_sizes
